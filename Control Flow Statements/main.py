@@ -87,7 +87,7 @@ class MyEmptyClass:
 def initlog(*args):
     pass #REMEMBER TO IMPLEMENT THIS!
 
-# 4.7 match Statements (HAVE ANANYA EXPLAIN)
+# 4.7 match Statements (FURTHER EXPLANATION)
 # like a better switch statement, after one case is executed, that's it
 def http_error(code):
     match status:
@@ -151,7 +151,7 @@ def fib2(n):  # return Fibonacci series up to n
 # f100 is [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 
 # 4.9 More on Defining Functions
-# 4.9.1 Default Argument Values
+# 4.9.1 Default Argument Values (FURTHER EXPLANATION)
 def ask_ok(prompt, retries=4, reminder='Please try again!'):
     while True:
         reply = input(prompt)
@@ -275,3 +275,60 @@ concat("earth", "mars", "venus", sep=".") # this is earth.mars.venus
 # list(range(*args)) # call with arguments unpacked from a list, this is [3, 4, 5]
 # the * unpacks the arguments from a list/tuple
 
+def parrot(voltage, state='a stiff', action='voom'):
+    print("-- This parrot wouldn't", action, end=' ')
+    print("if you put", voltage, "volts through it.", end=' ')
+    print("E's", state, "!")
+
+d = {"voltage": "four million", "state": "bleedin' demised", "action": "VOOM"}
+parrot(**d)
+
+# 4.9.6 Lambda Expressions (FURTHER EXPLANATION)
+# lambda to return a function
+def make_incrementor(n):
+    return lambda x: x + n
+
+p = make_incrementor(42)
+p(0) # this is 42
+p(1) # this is 43
+
+# lambda to pass a function
+pairs = [(1, 'one'), (2, 'two'), (3, 'three'), (4, 'four')]
+pairs.sort(key=lambda pair: pair[1])
+# pairs is [(4, 'four'), (1, 'one'), (3, 'three'), (2, 'two')]
+
+# 4.9.7 Documentation String
+def my_function():
+    """Do nothing, but document it.
+
+    No, really, it doesn't do anything.
+    """
+    pass
+
+print(my_function.__doc__)
+# start with a capital letter, end with a period
+# the first non-blank line sets the indentations for the function
+
+# 4.9.8 Function Annotations (FURTHER EXPLANATION)
+# Return annotations are defined by a literal ->, followed by an expression
+def w(ham: str, eggs: str = 'eggs') -> str:
+    print("Annotations:", w.__annotations__)
+    print("Arguments:", ham, eggs)
+    return ham + ' and ' + eggs
+
+print(w('spam')) # what should be returned is follows
+# Annotations: {'ham': <class 'str'>, 'return': <class 'str'>, 'eggs': <class 'str'>}, it should be this apparently
+# Arguments: spam eggs
+# 'spam and eggs'
+
+# 4.10 Intermezzo: Coding Style
+# 4 spaces, no tabs
+# wrap lines so they don't exceed 79 characters
+# use blank lines to separate functions, classes, and larger blocks of code inside functions
+# when possible, put comments on a line of their own
+# use docstrings
+# spaces after commas and around operators, but not inside bracketing constructs
+# name classes and functions consistently
+# UpperCamelCase for classes
+# lowercase_with_underscores for functions and methods
+# no fancy encodings, use ASCII characters
