@@ -1,4 +1,4 @@
-# 7 Innput and Output
+# 7 Input and Output
 
 # 7.1 Fancier Output Formatting
 # expression statements and print() statements have been used to print to write values
@@ -110,3 +110,35 @@ print('The value of pi is approximately %5.3f.' % math.pi)
 # f.closed is True
 # if not using with, immediately close the file with f.close()
 # attempting to do anything with the file object after the file closes will automatically fail
+
+# 7.2.1 Methods of File Objects
+# read(size) reads some quantity of data and returns it as a string (or bytes objects in binary mode)
+#     if size is negative or omitted, read until EOF
+#     returns an empty string if EOF is encountered immediately
+# readline() reads a single line from the file, newline character added unless last line
+#     returns as a string (or bytes objects in binary mode)
+#     returns an empty string if EOF is encountered immediately
+# readlines() and list(f) read all the lines in the file in a list
+# write(string) writes the given string to the file, returning the number of characters written
+# other types of objects need to be converted to a string or bytes before writing
+# tell() returns the current position of the read/write pointer as number of bytes from beginning of file (number)
+# seek(offset, whence) changes file object's position, reference point + offset
+#     whence=0 is beginning of file, whence=1 is current position, whence=2 is end of file, default is 0
+#     in text files, it only seeks relative to the beginning of the file (except seek(0, 2))
+#     only valid offset values are those returned by tell() or 0
+# isatty() and truncate() also exist, but are less frequently used
+#              ^ resizes the file to a specific size, current pointer position if unspecified
+
+# 7.2.2 Saving Structured Data with json (JavaScript Object Notation)
+# take the stering returned by read and pass to a function called int() to convert it to a number
+# serializing takes Python data hierarchies and converts them into string representations
+# deserializing takes string representations and converts them back into Python data hierarchies
+# between serializing the deserializing, the string representing the data may have been stored in a file or
+#   data, or sent over network connection to some distant machine
+# viewing JSON representations
+# import json
+# x = [1, 'simple', 'list']
+# json.dumps(x) is '[1, "simple", "list"]'
+# json.dump(x,f) serializes x and writes it to f
+# x = json.load(f), decodes the object from f and returns it
+# JSON files must be encoded in UTF-8
