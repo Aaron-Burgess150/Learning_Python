@@ -52,4 +52,61 @@ while True:
 #     except B:
 #         print("B")
 # this will print B, C, D in that order
+# when an exception occurs, it may have associated values, known as exception arguments
+# presence and type depend on exception type
+# the except clause may specify a variable after the exception name
+# the variable is bound to the exception instance which typically has an args attribute to store the arguments
+# builtin exception types define __str()__ to print all arguments without explicitly accessing .args
+# try:
+#     raise Exception('spam', 'eggs')
+# except Exception as inst:
+#     print(type(inst))    # the exception type
+#     print(inst.args)     # arguments stored in .args
+#     print(inst)          # __str__ allows args to be printed directly,
+#                          # but may be overridden in exception subclasses
+#     x, y = inst.args     # unpack args
+#     print('x =', x)
+#     print('y =', y)
+# <class 'Exception'>
+# ('spam', 'eggs')
+# ('spam', 'eggs')
+# x = spam
+# y = eggs
+# the exception's __str()__ output is printed as the last part of a message for unhandled exceptions
+# BaseException is the common base class of all exceptions
+# Exception, one of it's subclasses, is the base class of all non-fatal exceptions
+# exceptions that aren't subclasses of Exception are typically unhandled, indicating the program should terminate
+# they include SystemExit which is raised by sys.exit() and KeyboardInterrupt
+# most common pattern for handling Exception is to print or log the exception and then re-raise it
+#     this allows a caller to handle the exception as well
+# import sys
+# try:
+#     f = open('myfile.txt')
+#     s = f.readline()
+#     i = int(s.strip())
+# except OSError as err:
+#     print("OS error:", err)
+# except ValueError:
+#     print("Could not convert data to an integer.")
+# except Exception as err:
+#     print(f"Unexpected {err=}, {type(err)=}")
+#     raise
+# try_except clauses have optional else clauses, which must follow all except clauses
+# useful for code that must be executed if the try clause does not raise an exception
+# for arg in sys.argv[1:]:
+#     try:
+#         f = open(arg, 'r')
+#     except OSError:
+#         print('cannot open', arg)
+#     else:
+#         print(arg, 'has', len(f.readlines()), 'lines')
+#         f.close()
+# exception handlers also handle exceptions that occur inside functions that are called in the try clause
 
+# 8.4 Raising Exceptions
+# raise statement allows the programmer to force a specified error to occur
+# raise NameError('HiThere')
+# Traceback (most recent call last):
+#   File "<stdin>", line 1, in <module>
+#     raise NameError('HiThere')
+# NameError: HiThere
